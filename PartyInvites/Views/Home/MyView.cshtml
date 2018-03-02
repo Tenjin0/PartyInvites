@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>
+        <div>
+            @ViewBag.Greeting Hello World (from the view)
+            <p>
+                <a asp-action="RsvpForm">RsvpForm</a>
+            </p>
+        </div>
+    </body>
+</html>

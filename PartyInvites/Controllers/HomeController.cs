@@ -12,26 +12,31 @@ namespace PartyInvites.Controllers
     {
         public IActionResult Index()
         {
+
+            int hour = DateTime.Now.Hour;
+            ViewBag.Greeting = hour < 12 ? "Good Morning" : "Good Afternoon";
+            Debug.WriteLine("Index");
+            Trace.TraceWarning("Trace warning");
+            Trace.WriteLine("Trace writeline");
+            return View("MyView");
+        }
+
+
+        [HttpGet]
+        public IActionResult RsvpForm()
+        {
             return View();
         }
 
-        public IActionResult About()
+        [HttpPost]
+        public ViewResult RsvpForm(GuestResponse guestResponse)
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            //TODO store response from guest
+            //Console.WriteLine(guestResponse);
+            Debug.WriteLine(guestResponse);
+            Repository.AddResponse(guestResponse);
+            return View("Thanks", guestResponse);
         }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        
     }
 }
