@@ -10,8 +10,7 @@ namespace PartyInvites.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
+        public IActionResult Index() {
 
             int hour = DateTime.Now.Hour;
             ViewBag.Greeting = hour < 12 ? "Good Morning" : "Good Afternoon";
@@ -23,19 +22,24 @@ namespace PartyInvites.Controllers
 
 
         [HttpGet]
-        public IActionResult RsvpForm()
-        {
+        public IActionResult RsvpForm() {
             return View();
         }
 
         [HttpPost]
-        public ViewResult RsvpForm(GuestResponse guestResponse)
+        public ViewResult RsvpForm(GuestResponse guestResponse) {
+            if (ModelState.IsValid) {
+                Repository.AddResponse(guestResponse);
+                return View("Thanks", guestResponse);
+            } else {
+                Console.WriteLine("Model non valide");
+                return View();
+            }
+        }
+
+        public ViewResult ListResponses()
         {
-            //TODO store response from guest
-            //Console.WriteLine(guestResponse);
-            Debug.WriteLine(guestResponse);
-            Repository.AddResponse(guestResponse);
-            return View("Thanks", guestResponse);
+            return View(Repository.Responses.Where(r => r.WillAttend == true ));
         }
         
     }

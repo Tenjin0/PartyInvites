@@ -13,19 +13,23 @@
 </head>
 <body>
     <h2>RsvpForm</h2>
-
+    toto
     <form asp-action="RsvpForm" method="post">
+        <div asp-validation-summary="All"></div>
         <p>
             <label asp-for="Name">Your Name:</label>
             <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
         </p>
         <p>
             <label asp-for="Email">Your Email:</label>
             <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
         </p>
         <p>
             <label asp-for="Phone">Your Phone:</label>
             <input asp-for="Phone" />
+            <span asp-validation-for="Phone"></span>
         </p>
         <p>
             <label asp-for="WillAttend">Your Will attend?</label>
@@ -34,6 +38,7 @@
                 <option value="true">Yes, I'll be there</option>
                 <option value="false">No I cannot come</option>
             </select>
+            <span asp-validation-for="WillAttend"></span>
         </p>
         <button type="submit">Submit RSVP</button>
     </form>
