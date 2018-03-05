@@ -15,9 +15,9 @@ namespace PartyInvites.Controllers
 
             int hour = DateTime.Now.Hour;
             ViewBag.Greeting = hour < 12 ? "Good Morning" : "Good Afternoon";
-            Debug.WriteLine("Index");
-            Trace.TraceWarning("Trace warning");
-            Trace.WriteLine("Trace writeline");
+            //Debug.WriteLine("Index");
+            //Trace.TraceWarning("Trace warning");
+            //Trace.WriteLine("Trace writeline");
             return View("MyView");
         }
 
